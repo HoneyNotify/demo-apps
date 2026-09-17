@@ -38,6 +38,8 @@ The Xcode project already declares `https://github.com/HoneyNotify/ios-SDK.git` 
 
 The included entitlement uses the development APNs environment. Xcode changes the signed entitlement appropriately for distribution profiles. Ensure the HoneyNotify provider environment matches the build you are testing.
 
+The demo deliberately leaves `AppConfig.requestsCriticalAlerts` set to `false` and does not include Apple's restricted Critical Alerts entitlement. Only after Apple approves the entitlement for your own App ID should you add it to the target and change that flag to `true`.
+
 ## Android setup
 
 1. Open the `Android/` directory in Android Studio.
@@ -49,6 +51,8 @@ The included entitlement uses the development APNs environment. Xcode changes th
 7. On Android 13 or later, accept the notification permission prompt. Check Logcat for a successful HoneyNotify device ID.
 
 The Android project declares `https://github.com/HoneyNotify/android-SDK.git` as a Gradle Git source dependency tracking the latest `version`. Android Studio checks out the SDK into Gradle's managed VCS cache during sync/build. Dynamic dependency caching is disabled for this demo so Gradle checks the branch for updates; **Sync Project with Gradle Files** forces a new resolution when required.
+
+The demo creates HoneyNotify's four notification channels during foreground startup. Android users retain final control of each channel's sound and importance, so the Critical option is an urgent high-importance channel rather than a guaranteed Do Not Disturb bypass.
 
 Tracking `main` gives the demo the newest SDK code but also means an upstream change can affect an otherwise unchanged app. For a production release, consider changing each dependency to a tested release tag or commit before submitting to an app store.
 

@@ -32,6 +32,7 @@ class MainActivity : Activity() {
 
         createView()
         requestNotificationPermission()
+        HoneyNotifyClient.get(applicationContext).createNotificationChannels()
         HoneyNotifyClient.register(applicationContext)
         handleNotificationIntent(intent, trackOpen = true)
 
