@@ -1,0 +1,8 @@
+// HoneyNotify WebView demo configuration.
+// Keep $() between URL slashes so Xcode does not parse // as a comment.
+
+APP_DISPLAY_NAME = HoneyNotify Demo
+PRODUCT_BUNDLE_IDENTIFIER = com.example.honeynotify.demo
+WEBVIEW_URL = https:/$()/example.com
+HONEYNOTIFY_API_URL = https:/$()/api.honeynotify.com
+HONEYNOTIFY_CLIENT_KEY = ps_public_replace_me
