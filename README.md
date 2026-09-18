@@ -2,8 +2,8 @@
 
 We here have provided two basic starter apps:
 
-- [`iOS/`](iOS/) — SwiftUI, `WKWebView`, APNs, and the HoneyNotify Swift SDK.
-- [`Android/`](Android/) — Kotlin, Android `WebView`, Firebase Cloud Messaging (FCM), and the HoneyNotify Android SDK.
+- [`iOS/`](iOS/) - SwiftUI, `WKWebView`, APNs, and the HoneyNotify Swift SDK.
+- [`Android/`](Android/) - Kotlin, Android `WebView`, Firebase Cloud Messaging (FCM), and the HoneyNotify Android SDK.
 
 Both projects load your website full screen and register the physical device with HoneyNotify. Notification opens are tracked and a HoneyNotify `click_url` is opened inside the app when it belongs to the configured website. Other HTTP(S) links are handed to the system browser.
 
