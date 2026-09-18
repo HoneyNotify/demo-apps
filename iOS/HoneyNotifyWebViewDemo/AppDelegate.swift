@@ -77,17 +77,22 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
         let userInfo = response.notification.request.content.userInfo
-        completionHandler()
         Task { @MainActor in
-            try? await honeyNotify.trackOpened(
-                userInfo: userInfo,
-                actionId: response.actionIdentifier == UNNotificationDefaultActionIdentifier
-                    ? nil
-                    : response.actionIdentifier
-            )
+            defer { completionHandler() }
 
             if let url = honeyNotify.notification(from: userInfo).clickURL {
                 NotificationCenter.default.post(name: .openHoneyNotifyURL, object: url)
+            }
+
+            do {
+                try await honeyNotify.trackOpened(
+                    userInfo: userInfo,
+                    actionId: response.actionIdentifier == UNNotificationDefaultActionIdentifier
+                        ? nil
+                        : response.actionIdentifier
+                )
+            } catch {
+                print("HoneyNotify: notification interaction tracking failed: \(error)")
             }
         }
     }
